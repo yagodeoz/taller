@@ -1,0 +1,29 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+eureka:
+  instance:
+    hostname: localhost
+    preferIpAddress: true
+  client:
+    fetch-registry: false
+    register-with-eureka: false
+    serviceUrl:
+      defaultZone: http://localhost:9190/
+spring:
+  security:
+    user:
+      name: admin
+      password: admin
+  application:
+    name: Administrador-Eureka
+  boot:
+    admin:
+      context-path: /admin
+server:
+  port: 9190

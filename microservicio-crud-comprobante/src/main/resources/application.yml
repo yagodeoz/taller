@@ -1,0 +1,50 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+    hostname: localhost
+    preferIpAddress: true
+  client:
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://admin:admin@localhost:9190/eureka
+    register-with-eureka: true
+server:
+  port: ${PORT:0}
+spring:
+  boot:
+    admin:
+      client:
+        instance:
+          prefer-ip: true
+        url: http://localhost:9190/admin        
+  application:
+    name: Crud-Comprobante
+  datasource:
+    driver-class: oracle.jdbc.driver.OracleDriver
+    username: taller
+    url: jdbc:oracle:thin:@localhost:1521:xe
+    password: 12345678
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+logging:
+  file:
+    name: crud-comprobante.log
+  level:
+    org:
+      hibernate:
+        SQL: debug
+info:
+    author: Byon Santiago Segovia Quintero
+    description: 'Microservicio ejemplo cooperatvias'
+    version: '2.0'
+    name: Servicios CRUD Comprobante
