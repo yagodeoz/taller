@@ -16,10 +16,6 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:9190/
 spring:
-  security:
-    user:
-      name: admin
-      password: admin
   application:
     name: Administrador-Eureka
   boot:

@@ -1,6 +1,9 @@
 package fin.coop1504.tallerjava.controladores;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,7 +14,7 @@ import fin.coop1504.tallerjava.servicios.ComprobanteElectronicoServicio;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
-@RequestMapping(path = "/crud_comprobante")
+@RequestMapping(path = "/crud-comprobante")
 @Slf4j
 public class ControladorCrudComprobante {
 
@@ -28,8 +31,13 @@ public class ControladorCrudComprobante {
 		} catch (Exception e) {
 			String msg = "Error al realizar el registro del comprobante, CLASS ControladorCrudComprobante - guardar ";
 			log.error(msg, e);
-			return new ModeloCrudRespuesta<String>(msg, "1111", "");
+			return new ModeloCrudRespuesta<>(msg, "1111", "");
 		}
+	}
+	
+	@GetMapping("/saludar")
+	public String saludo(HttpServletRequest request) {
+		return "URL SOLICITADO ES:   " + request.getRequestURL().toString();
 	}
 
 }

@@ -17,12 +17,16 @@ public class Index {
 	private String version;
 	@Value("${info.name}")
 	private String app;
+	
+	@Value("${server.port}")
+	private String puerto;
 		  
 	
 	@GetMapping(path = "/")
 	public String index(HttpServletResponse response) {
 		return "Datos del microservicio: Aplicación: " + app + 
-				", Descripcion: " + descripcion + ", versión: " + version + ", autor: " + nombre;  
+				", Descripcion: " + descripcion + ", versión: " + version + ", autor: " + nombre +
+				", puerto de conexión: " + puerto;  
 	}
 }
   

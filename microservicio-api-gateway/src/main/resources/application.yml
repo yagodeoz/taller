@@ -17,7 +17,7 @@ eureka:
       defaultZone: http://localhost:9190/eureka
     register-with-eureka: true
 server:
-  port: ${PORT:0}
+  port: 9998
 spring:
   boot:
     admin:
@@ -26,25 +26,19 @@ spring:
           prefer-ip: true
         url: http://localhost:9190/admin        
   application:
-    name: Crud-Comprobante
-  datasource:
-    driver-class: oracle.jdbc.driver.OracleDriver
-    username: taller
-    url: jdbc:oracle:thin:@localhost:1521:xe
-    password: 12345678
-  jpa:
-    show-sql: true
-    hibernate:
-      ddl-auto: update
+    name: Api-Gateway
+  cloud:
+    gateway:
+      routes:
+        - id: crud
+          uri: lb://CRUD-COMPROBANTE
+          predicates:
+            - Path=/crud-comprobante/**
 logging:
   file:
-    name: crud-comprobante.log
-  level:
-    org:
-      hibernate:
-        SQL: debug
+    name: api-gateway.log
 info:
   author: Byon Santiago Segovia Quintero
-  description: 'Microservicio ejemplo cooperatvias'
+  description: 'API-GATEWAY Microservicio ejemplo cooperatvias'
   version: '2.0'
-  name: Servicios CRUD Comprobante
+  name: Api - Gateway
